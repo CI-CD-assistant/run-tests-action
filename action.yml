@@ -1,0 +1,18 @@
+name: "Run Tests Action"
+description: "A custom GitHub Action to run tests for a Java project with Maven or Gradle"
+author: "Juan Felipe Jaramillo <juanfelipejaramillolosada@gmail.com>"
+inputs:
+  project_type:
+    description: "Specify the build tool: maven or gradle"
+    required: true
+    default: "maven"
+  project_path:
+    description: "Path to the project (relative to the root)"
+    required: true
+    default: "./"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - "${{ inputs.project_type }}"
+    - "${{ inputs.project_path }}"
